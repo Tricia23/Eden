@@ -1,6 +1,6 @@
 
 <template>
-  <div>
+  <div class="listing__details">
     <Header />
     <div class="details__wrapper">
       <div>
@@ -8,11 +8,12 @@
         <div class="dog__image">
           <img :src="dog.image" />
         </div>
+        <h2 class="other-text">Here are other images for this breed</h2>
         <div class="random__wrapper">
           <div class="wrapper-inner">
             <div v-for="(randomDog, index) in randomDogs" :key="index" class="square">
               <div class="square-inner">
-                <img :src="randomDogs.image" />
+                <img :src="randomDog" />
               </div>
             </div>
           </div>
@@ -21,14 +22,16 @@
       <div v-if="breeds.length == 0">
         <p class="no__subbreeds">This Dog has no Subbreeds*</p>
       </div>
-
-      <div class="sub__breed-wrap" v-else>
-        <div class="wrapper">
-          <div class="wrapper-inner">
-            <div v-for="(breed, index) in breeds" :key="index" class="square">
-              <div class="square-inner">
-                <img :src="breed.image" />
-                <span>{{breed.name}}</span>
+      <div v-else>
+        <h2>These are the subreeds</h2>
+        <div class="sub__breed-wrap">
+          <div class="wrapper">
+            <div class="wrapper-inner">
+              <div v-for="(breed, index) in breeds" :key="index" class="square">
+                <div class="square-inner">
+                  <img :src="breed.image" />
+                  <span>{{breed.name}}</span>
+                </div>
               </div>
             </div>
           </div>
@@ -60,7 +63,7 @@ export default {
 
   created() {
     this.$store.dispatch("getSubBreeds", this.$props.name);
-    this.$store.dispatch("getRandomDogs");
+    this.$store.dispatch("getRandomDogs", this.$props.name);
   },
   computed: mapGetters(["breeds", "randomDogs"])
 };
@@ -72,7 +75,7 @@ export default {
   display: block;
   padding-top: 4rem;
   width: 90%;
-  margin: 4rem auto 0 auto;
+  margin: 4rem auto 2rem auto;
 }
 .details__wrapper h1 {
   text-align: center;
@@ -95,26 +98,21 @@ export default {
   box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.306764);
   border-radius: 6px;
 }
-.sub__breed-wrap {
-  width: 50%;
-  display: flex;
-  margin: 2rem auto 0 auto;
-  height: 400px;
-}
-.wrapper {
-  text-align: center;
-  width: 80%;
-  margin-left: auto;
-  margin-right: auto;
-}
+
 .wrapper-inner {
   padding: 5px;
   display: flex;
   flex-wrap: wrap;
 }
+.sub__breed-wrap {
+  width: 100%;
+  display: flex;
+  margin: 1rem auto 0 auto;
+  height: 400px;
+}
 
 .square {
-  flex: 0 1 33.33%;
+  flex: 0 1 50%;
 }
 
 .square img {
@@ -126,7 +124,7 @@ export default {
 }
 
 .square-inner {
-  padding: 15px;
+  padding: 10px;
 }
 
 .square-inner span {
@@ -135,6 +133,12 @@ export default {
   margin-left: 7px;
   color: #333333;
   margin-top: 10px;
+}
+.wrapper {
+  text-align: center;
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .no__subbreeds {
@@ -145,12 +149,19 @@ export default {
   font-weight: 600;
   color: #be0d0d;
 }
-
 .random__wrapper {
-  width: 45%;
-  margin: 3rem auto;
+  width: 100%;
+  margin: 1rem auto;
 }
 
+.details__wrapper h2 {
+  text-align: center;
+  margin-top: 1rem;
+}
+
+.listing__details {
+  background-image: url("../images/wall4.png");
+}
 @media (min-width: 900px) {
   .dog__image img {
     height: 400px;
@@ -171,6 +182,47 @@ export default {
   .details__wrapper p {
     width: 80%;
     margin: auto;
+  }
+  .details__wrapper h2 {
+    margin-top: 3rem;
+  }
+  .square {
+    flex: 0 1 33.33%;
+  }
+  .square-inner {
+    padding: 15px;
+  }
+
+  .random__wrapper {
+    width: 45%;
+    margin: 3rem auto;
+  }
+  .wrapper {
+    text-align: center;
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .sub__breed-wrap {
+    width: 50%;
+    display: flex;
+    margin: 2rem auto 0 auto;
+    height: 400px;
+  }
+
+  .details__wrapper {
+    width: 100%;
+    display: block;
+    padding-top: 4rem;
+    width: 90%;
+    margin: 4rem auto 5rem auto;
+  }
+}
+
+@media (min-width: 650px) and (max-width: 1210px) {
+  .square {
+    flex: 0 1 33.33%;
   }
 }
 </style>

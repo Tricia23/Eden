@@ -1,5 +1,5 @@
 <template>
-  <div id>
+  <div>
     <div v-if="isLoading">
       <loading :active.sync="isLoading" :can-cancel="false" :is-full-page="fullPage"></loading>
     </div>
@@ -26,7 +26,7 @@
                 class="square"
                 :to="{
                     name: 'ListingDetails',
-                    params: { dog:dog, name:dog.name, randomDog:breeds}  
+                    params: { dog:dog, name:dog.name, randomDogs:breeds}  
                 }"
               >
                 <VueClazyLoad :src="dog.image">
@@ -76,8 +76,7 @@ export default {
       this.isLoading = true;
 
       this.isLoading = false;
-    },
-   
+    }
   },
 
   mounted() {
@@ -85,7 +84,6 @@ export default {
       .get(`https://dog.ceo/api/breeds/list/all`)
       .then(response => {
         this.breeds = response.data.message;
-        
       })
       .then(() => {
         const dogs = [];

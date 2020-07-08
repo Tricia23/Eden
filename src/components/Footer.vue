@@ -18,7 +18,7 @@
   bottom: 0;
   left: 0;
   bottom: 0;
-  height: 100px;
+  height: 50px;
   width: 100%;
   overflow: hidden;
 }
@@ -52,7 +52,7 @@
 
 @media (min-width: 768px) {
   .footer {
-    position: absolute;
+    position: inherit;
     bottom: 0;
     left: 0;
     bottom: 0;

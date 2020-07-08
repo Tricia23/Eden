@@ -54,19 +54,12 @@ export default new Vuex.Store({
           // console.log(state.breeds);
         });
     },
-    getRandomDogs({ commit, state }) {
-      const randomDogs = [];
-      Object.keys(state.breeds).forEach(function(breed) {
-        state.randomDogs.map((randomDog) => {
-          axios
-            .get(`https://dog.ceo/api/breed/${randomDog}/images/random/3`)
-            .then((response) => {
-              randomDogs.push({ name: breed, image: response.data.message });
-              console.log(randomDogs);
-              commit("addrandomDog", randomDogs);
-            });
+    getRandomDogs({ commit, state }, name) {
+      axios
+        .get(`https://dog.ceo/api/breed/${name}/images/random/4`)
+        .then((response) => {
+          commit("addrandomDogs", response.data.message);
         });
-      });
     },
   },
 });
