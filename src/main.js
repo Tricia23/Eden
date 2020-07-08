@@ -3,11 +3,20 @@ import App from "./App.vue";
 import "./registerServiceWorker";
 import router from "./router";
 import store from "./store";
+import axios from "axios";
+import "@fortawesome/fontawesome-free/css/all.css";
+import "@fortawesome/fontawesome-free/js/all.js";
+import Loader from "vue-loading-overlay";
+ import Loading from 'vue-loading-overlay';
+import "vue-loading-overlay/dist/vue-loading.css";
 
 Vue.config.productionTip = false;
+Vue.prototype.$http = axios;
+Vue.use(Loading);
+Vue.use(Loader);
 
 new Vue({
   router,
   store,
-  render: h => h(App)
+  render: (h) => h(App),
 }).$mount("#app");
