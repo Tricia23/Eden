@@ -30,7 +30,7 @@ export default new Vuex.Store({
     },
   },
   actions: {
-    getSubBreeds({ commit, state }, name) {
+    getSubBreeds({ commit }, name) {
       axios
         .get(`https://dog.ceo/api/breed/${name}/list`)
         .then((response) => {
@@ -51,10 +51,9 @@ export default new Vuex.Store({
               });
           });
           commit("addBreeds", subBreeds);
-          // console.log(state.breeds);
         });
     },
-    getRandomDogs({ commit, state }, name) {
+    getRandomDogs({ commit }, name) {
       axios
         .get(`https://dog.ceo/api/breed/${name}/images/random/4`)
         .then((response) => {
