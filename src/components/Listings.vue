@@ -90,7 +90,11 @@ export default {
 
         Object.keys(this.breeds).forEach(function(breed) {
           axios
-            .get(`https://dog.ceo/api/breed/${breed}/images/random/`)
+            .get(`https://dog.ceo/api/breed/${breed}/images/random/`, {
+            //   headers: {
+            //     "Access-Control-Allow-Origin": "*"
+            //   }
+            })
             .then(response => {
               dogs.push(new Dog(breed, response.data.message));
             });
@@ -102,7 +106,7 @@ export default {
         setTimeout(() => {
           this.isLoading = false;
         }, 5000);
-        // console.log(this.dogs);
+        
       });
   },
   computed: {
@@ -143,7 +147,7 @@ export default {
 }
 
 .searchTerm:focus {
-  color: #00b4cc;
+  color: #333333;
 }
 
 .searchButton {

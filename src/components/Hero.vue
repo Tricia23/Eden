@@ -10,13 +10,10 @@
         </div>
       </div>
     </div>
-
-    
   </div>
 </template>
 
 <style scoped lang="scss">
-
 .hero {
   height: 410px;
   width: 100%;
@@ -27,7 +24,7 @@
   margin-top: 4rem;
 }
 .hero__image {
-  height: 410px;
+  height: 306px;
   width: 100%;
   background-image: url("../images/dog-hero.png");
   background-size: contain;
@@ -43,19 +40,21 @@
   align-items: flex-end;
 }
 .hero__overlay h1 {
-  padding-bottom: 2rem;
+  
   text-align: center;
   color: #f2f2f2;
   font-size: 22px;
   text-transform: uppercase;
   line-height: 1.5;
   letter-spacing: 2px;
+  width: 100%;
+  padding: 0 1rem 2rem 1rem;
 }
 .break {
   display: none;
 }
 
-@media (min-width: 768px) {
+@media (min-width: 800px) {
   .hero {
     height: 450px;
   }
@@ -78,6 +77,31 @@
     text-align: right;
     font-size: 40px;
     padding: 10rem 5rem 0 0;
+  }
+}
+
+@media (min-width: 800px) and (max-width: 1210px) {
+  .hero__image {
+    height: 345px;
+    background-position: unset;
+  }
+
+  .hero {
+    height: 345px;
+  }
+
+  .hero__overlay {
+    height: 345px;
+  }
+
+  .hero__overlay h1 {
+    width: 50%;
+    text-align: right;
+    font-size: 25px;
+    padding: 10rem 2rem 0 0;
+  }
+  .break {
+    display: none;
   }
 }
 </style>

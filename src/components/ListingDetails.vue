@@ -13,6 +13,7 @@
           <div class="wrapper-inner">
             <div v-for="(randomDog, index) in randomDogs" :key="index" class="square">
               <div class="square-inner">
+              
                 <img :src="randomDog" />
               </div>
             </div>
@@ -29,8 +30,13 @@
             <div class="wrapper-inner">
               <div v-for="(breed, index) in breeds" :key="index" class="square">
                 <div class="square-inner">
-                  <img :src="breed.image" />
-                  <span>{{breed.name}}</span>
+                  <VueClazyLoad :src="breed.image">
+                    <img :src="breed.image" />
+                    <div class="preloader" slot="placeholder">
+                      <clip-loader></clip-loader>
+                    </div>
+                    <span>{{breed.name}}</span>
+                  </VueClazyLoad>
                 </div>
               </div>
             </div>
@@ -46,12 +52,16 @@
 import { mapGetters } from "vuex";
 import Header from "@/components/Header.vue";
 import Footer from "@/components/Footer.vue";
+import { VueClazyLoad } from "vue-clazy-load";
+import ClipLoader from "vue-spinner/src/ClipLoader.vue";
 export default {
   name: "listings",
   props: ["dog", "name"],
   components: {
     Header,
-    Footer
+    Footer,
+    VueClazyLoad,
+    ClipLoader
   },
   data() {
     return {
