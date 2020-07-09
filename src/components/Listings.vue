@@ -90,11 +90,7 @@ export default {
 
         Object.keys(this.breeds).forEach(function(breed) {
           axios
-            .get(`https://dog.ceo/api/breed/${breed}/images/random/`, {
-            //   headers: {
-            //     "Access-Control-Allow-Origin": "*"
-            //   }
-            })
+            .get(`https://dog.ceo/api/breed/${breed}/images/random`)
             .then(response => {
               dogs.push(new Dog(breed, response.data.message));
             });
@@ -106,7 +102,6 @@ export default {
         setTimeout(() => {
           this.isLoading = false;
         }, 5000);
-        
       });
   },
   computed: {
