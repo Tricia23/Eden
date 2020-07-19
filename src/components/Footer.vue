@@ -41,7 +41,7 @@
   color: #564f6f;
   font-size: 10px;
   display: inline-block;
-  margin-bottom: 10px;
+  margin-top: 5px;
 }
 .footer__policy--text {
   display: block;

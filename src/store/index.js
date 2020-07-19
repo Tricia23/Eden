@@ -53,7 +53,11 @@ export default new Vuex.Store({
               });
           });
           commit("addBreeds", subBreeds);
-          // console.log(state.breeds);
+         
+
+
+
+          
         });
     },
     getRandomDogs({ commit }, name) {
